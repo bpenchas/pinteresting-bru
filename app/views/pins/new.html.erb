@@ -1,0 +1,7 @@
+<%=link_to 'New pin', new_pin_path%>
+
+<%= simple_form_for @pin do |f| %>
+  <%= f.input :title, input_html: { class: 'form-control' } %><br>
+  <%= f.input :description, input_html: { class: 'form-control' } %>
+  <%= f.button :submit %>
+<% end %>
