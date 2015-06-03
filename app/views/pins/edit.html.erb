@@ -1,4 +1,4 @@
-<h1>Edit pin</h1>
+<div class="col-md-6 col-md-offset-3">
 
 <%= simple_form_for @pin do |f| %>
   <%= f.input :title, input_html: { class: 'form-control' } %><br>
@@ -7,3 +7,4 @@
 <% end %>
 
 <%=link_to 'Cancel', pin_path%>
+</div>
