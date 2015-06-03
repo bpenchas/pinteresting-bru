@@ -2,7 +2,7 @@ class PinsController < ApplicationController
 	before_action :find_pin, only: [:show, :edit, :update, :destroy]
 
 	def new
-		@pin = Pin.new  		
+		@pin = current_user.pins.build  		
 
 	end
 	def update
@@ -21,11 +21,11 @@ class PinsController < ApplicationController
 	end
 
 	def create
-		@pin = Pin.create(pin_params)
+		@pin = current_user.pins.build(pin_params)
 
 		if @pin.save
-			flash[:success] = 'Successfully created new pin'
-			redirect_to @pin	
+			
+			redirect_to @pin, notice: 'Successfully created new pin'
 
 		else
 			render 'new'
