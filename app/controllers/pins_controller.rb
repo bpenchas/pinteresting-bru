@@ -2,7 +2,8 @@ class PinsController < ApplicationController
 	before_action :find_pin, only: [:show, :edit, :update, :destroy]
 
 	def new
-		@pin = current_user.pins.build  		
+		@pin = Pin.new
+
 
 	end
 	def update
@@ -21,8 +22,11 @@ class PinsController < ApplicationController
 	end
 
 	def create
-		@pin = current_user.pins.build(pin_params)
-
+		@board = Board.find(params[:id])
+		@pin = Pin.new(pin_params)
+		@pin.user_id = current_user.id
+		@board.pins << @pin
+		
 		if @pin.save
 			
 			redirect_to @pin, notice: 'Successfully created new pin'
@@ -52,7 +56,7 @@ class PinsController < ApplicationController
 	# Be sure to update your create() and update() controller methods.
 
 	def pin_params
-	  params.require(:pin).permit(:title, :description)
+	  params.require(:pin).permit(:title, :description, :image)
 	end
 
 	def find_pin

@@ -1,0 +1,18 @@
+
+
+<h1><%=@board.name%></h1>
+<p><%=@board.description%></p>
+
+<div class="transitions-enabled" id="pins">
+	<%@board.pins.each do |pin|%>
+			<div class="box panel panel-default">
+				<%=link_to image_tag(pin.image, :size => "200x200"), pin_path(pin)%>
+			</div>
+	<%end%>
+</div>
+
+
+<%=link_to 'Make a New Pin', new_pin_path%><br>
+<%=link_to 'Back', root_path%>|
+<%=link_to 'Edit', edit_board_path%>|
+<%=link_to 'Delete', board_path, method: :delete, data: {confirm: 'Are you sure bru?'}%>

@@ -1,0 +1,5 @@
+<div align="center">
+<%@boards.each do |board|%>
+	<h1><%=link_to board.name, board_path(board)%></h1><br>
+<%end%>
+</div>
